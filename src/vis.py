@@ -30,11 +30,9 @@ def create_tsne_visualization(file_path, output_image_name):
     tsne = TSNE(n_components=3, random_state=42, perplexity=5, n_iter_without_progress=1000, metric="cosine", method="exact")
     reduced_embeddings = tsne.fit_transform(embeddings)
 
-    # File for saving distances
     distances_file_path = os.path.join(output_dir+"/text_files", output_image_name + "_distances.txt")
     with open(distances_file_path, "w") as dist_file:
 
-        # Calculate pairwise distances and find closest pairs
         pair_distances = []
         for i in range(len(reduced_embeddings)):
             for j in range(i + 1, len(reduced_embeddings)):
@@ -43,14 +41,12 @@ def create_tsne_visualization(file_path, output_image_name):
 
         pair_distances.sort(key=lambda x: x[2])
 
-        # Write closest pairs with distances to file
         dist_file.write(f"Closest pairs with distances for {output_image_name}:\n")
         closest_pairs = pair_distances[:5]
         for label1, label2, dist in closest_pairs:
             dist_file.write(f"Pair: ({label1}, {label2}) - Distance: {dist:.2f}\n")
             print(f"Pair: ({label1}, {label2}) - Distance: {dist:.2f}")
 
-        # Calculate and write specific pair distances
         dist_file.write(f"\nSpecific pair distances for {output_image_name}:\n")
         print(f"\nSpecific pair distances for {output_image_name}:")
         def calculate_specific_distance(label_a, label_b):
@@ -62,7 +58,6 @@ def create_tsne_visualization(file_path, output_image_name):
         for i in range(118, 123):
             calculate_specific_distance(f"{i}_1", f"{i}_2")
 
-    # Create 3D plot
     fig = plt.figure(figsize=(12, 8))
     ax = fig.add_subplot(111, projection='3d')
 
@@ -77,7 +72,6 @@ def create_tsne_visualization(file_path, output_image_name):
     ax.set_ylabel("t-SNE Dimension 2")
     ax.set_zlabel("t-SNE Dimension 3")
 
-    # Save the plot
     output_path = os.path.join(output_dir+"/images", output_image_name + ".png")
     plt.savefig(output_path)
     plt.close()
