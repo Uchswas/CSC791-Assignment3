@@ -1,0 +1,13 @@
+Closest pairs with distances for code_embeddings_base_model_concat_layers:
+Pair: (120_code1, 120_code2) - Distance: 0.00
+Pair: (122_code1, 122_code2) - Distance: 7.40
+Pair: (120_code1, 121_code2) - Distance: 32.72
+Pair: (120_code2, 121_code2) - Distance: 32.72
+Pair: (120_code1, 121_code1) - Distance: 74.13
+
+Specific pair distances for code_embeddings_base_model_concat_layers:
+Pair: (118_code1, 118_code2) - Distance: 207.16
+Pair: (119_code1, 119_code2) - Distance: 699.09
+Pair: (120_code1, 120_code2) - Distance: 0.00
+Pair: (121_code1, 121_code2) - Distance: 102.77
+Pair: (122_code1, 122_code2) - Distance: 7.40

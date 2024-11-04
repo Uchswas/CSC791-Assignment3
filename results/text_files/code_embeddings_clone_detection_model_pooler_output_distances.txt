@@ -1,0 +1,13 @@
+Closest pairs with distances for code_embeddings_clone_detection_model_pooler_output:
+Pair: (120_code1, 120_code2) - Distance: 0.00
+Pair: (121_code1, 122_code1) - Distance: 82.77
+Pair: (118_code2, 120_code1) - Distance: 89.39
+Pair: (118_code2, 120_code2) - Distance: 89.39
+Pair: (118_code1, 120_code1) - Distance: 117.76
+
+Specific pair distances for code_embeddings_clone_detection_model_pooler_output:
+Pair: (118_code1, 118_code2) - Distance: 139.08
+Pair: (119_code1, 119_code2) - Distance: 4281.85
+Pair: (120_code1, 120_code2) - Distance: 0.00
+Pair: (121_code1, 121_code2) - Distance: 676.48
+Pair: (122_code1, 122_code2) - Distance: 237.66

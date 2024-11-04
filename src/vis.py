@@ -8,14 +8,24 @@ from scipy.spatial.distance import euclidean
 import os
 
 file_paths = [
-    "../results/code_embeddings/code_embeddings_base_model.json",
-    "../results/code_embeddings/code_embeddings_base_model_pool.json",
-    "../results/code_embeddings/code_embeddings_clone_detection_model.json",
-    "../results/code_embeddings/code_embeddings_clone_detection_model_pool.json"
+    "../results/code_embeddings/code_embeddings_base_model_mean_pooled.json",
+    "../results/code_embeddings/code_embeddings_base_model_pooler_output.json",
+    "../results/code_embeddings/code_embeddings_base_model_attention_pooled.json",
+    "../results/code_embeddings/code_embeddings_base_model_max_pooled.json",
+    "../results/code_embeddings/code_embeddings_base_model_concat_layers.json",
+    "../results/code_embeddings/code_embeddings_base_model_intermediate_layer.json",
+    "../results/code_embeddings/code_embeddings_clone_detection_model_mean_pooled.json",
+    "../results/code_embeddings/code_embeddings_clone_detection_model_pooler_output.json",
+    "../results/code_embeddings/code_embeddings_clone_detection_model_attention_pooled.json",
+    "../results/code_embeddings/code_embeddings_clone_detection_model_max_pooled.json",
+    "../results/code_embeddings/code_embeddings_clone_detection_model_concat_layers.json",
+    "../results/code_embeddings/code_embeddings_clone_detection_model_intermediate_layer.json"
 ]
 
 output_dir = "../results"
 os.makedirs(output_dir, exist_ok=True)
+os.makedirs(os.path.join(output_dir, "text_files"), exist_ok=True)
+os.makedirs(os.path.join(output_dir, "images"), exist_ok=True)
 
 def create_tsne_visualization(file_path, output_image_name):
     with open(file_path, "r") as file:
@@ -30,9 +40,8 @@ def create_tsne_visualization(file_path, output_image_name):
     tsne = TSNE(n_components=3, random_state=42, perplexity=5, n_iter_without_progress=1000, metric="cosine", method="exact")
     reduced_embeddings = tsne.fit_transform(embeddings)
 
-    distances_file_path = os.path.join(output_dir+"/text_files", output_image_name + "_distances.txt")
+    distances_file_path = os.path.join(output_dir, "text_files", output_image_name + "_distances.txt")
     with open(distances_file_path, "w") as dist_file:
-
         pair_distances = []
         for i in range(len(reduced_embeddings)):
             for j in range(i + 1, len(reduced_embeddings)):
@@ -45,18 +54,17 @@ def create_tsne_visualization(file_path, output_image_name):
         closest_pairs = pair_distances[:5]
         for label1, label2, dist in closest_pairs:
             dist_file.write(f"Pair: ({label1}, {label2}) - Distance: {dist:.2f}\n")
-            print(f"Pair: ({label1}, {label2}) - Distance: {dist:.2f}")
 
         dist_file.write(f"\nSpecific pair distances for {output_image_name}:\n")
         print(f"\nSpecific pair distances for {output_image_name}:")
+        
         def calculate_specific_distance(label_a, label_b):
             idx_a, idx_b = labels.index(label_a), labels.index(label_b)
             distance = euclidean(reduced_embeddings[idx_a], reduced_embeddings[idx_b])
             dist_file.write(f"Pair: ({label_a}, {label_b}) - Distance: {distance:.2f}\n")
-            print(f"Pair: ({label_a}, {label_b}) - Distance: {distance:.2f}")
 
         for i in range(118, 123):
-            calculate_specific_distance(f"{i}_1", f"{i}_2")
+            calculate_specific_distance(f"{i}_code1", f"{i}_code2")
 
     fig = plt.figure(figsize=(12, 8))
     ax = fig.add_subplot(111, projection='3d')
@@ -72,7 +80,7 @@ def create_tsne_visualization(file_path, output_image_name):
     ax.set_ylabel("t-SNE Dimension 2")
     ax.set_zlabel("t-SNE Dimension 3")
 
-    output_path = os.path.join(output_dir+"/images", output_image_name + ".png")
+    output_path = os.path.join(output_dir, "images", output_image_name + ".png")
     plt.savefig(output_path)
     plt.close()
     print(f"Saved 3D t-SNE plot for {output_image_name} to {output_path}")

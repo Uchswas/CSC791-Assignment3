@@ -1,0 +1,13 @@
+Closest pairs with distances for code_embeddings_base_model_pooler_output:
+Pair: (120_code1, 120_code2) - Distance: 0.00
+Pair: (118_code1, 122_code1) - Distance: 153.45
+Pair: (120_code1, 121_code2) - Distance: 209.87
+Pair: (120_code2, 121_code2) - Distance: 209.87
+Pair: (118_code1, 122_code2) - Distance: 251.80
+
+Specific pair distances for code_embeddings_base_model_pooler_output:
+Pair: (118_code1, 118_code2) - Distance: 667.89
+Pair: (119_code1, 119_code2) - Distance: 424.80
+Pair: (120_code1, 120_code2) - Distance: 0.00
+Pair: (121_code1, 121_code2) - Distance: 2691.17
+Pair: (122_code1, 122_code2) - Distance: 367.49
