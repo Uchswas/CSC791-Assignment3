@@ -1,0 +1,13 @@
+Closest pairs with distances for code_embeddings_base_model_pool:
+Pair: (118_1, 118_2) - Distance: 0.00
+Pair: (119_1, 119_2) - Distance: 0.00
+Pair: (120_1, 120_2) - Distance: 0.00
+Pair: (121_1, 121_2) - Distance: 0.00
+Pair: (122_1, 122_2) - Distance: 0.00
+
+Specific pair distances for code_embeddings_base_model_pool:
+Pair: (118_1, 118_2) - Distance: 0.00
+Pair: (119_1, 119_2) - Distance: 0.00
+Pair: (120_1, 120_2) - Distance: 0.00
+Pair: (121_1, 121_2) - Distance: 0.00
+Pair: (122_1, 122_2) - Distance: 0.00
