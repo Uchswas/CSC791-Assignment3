@@ -39,7 +39,7 @@
     ```
     To generate results from embeddings, run the command. This will produce images saved in the `results/images` folder and distances in the `results/text_files` folder.
     ```bash
-    python3 embedding.py
+    python3 vis.py
     ```
 
 
