@@ -2,4 +2,6 @@ torch
 transformers
 scikit-learn
 matplotlib
-sklearn
+numpy
+python-Levenshtein
+

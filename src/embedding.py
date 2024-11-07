@@ -2,12 +2,9 @@ import torch
 import json
 from transformers import AutoTokenizer, AutoModel
 
-# Initialize models and tokenizer with `attn_implementation="eager"`
 codebert_base_tokenizer = AutoTokenizer.from_pretrained("microsoft/codebert-base")
 codebert_base_model = AutoModel.from_pretrained("microsoft/codebert-base", attn_implementation="eager")
-clone_detection_model = AutoModel.from_pretrained("ljcnju/CodeBertForClone-Detection", attn_implementation="eager")
 
-# Embedding methods
 
 # 1. Mean Pooling
 def get_mean_pooled_embedding(model, tokenizer, code_snippet):
@@ -66,7 +63,6 @@ def get_intermediate_layer_embedding(model, tokenizer, code_snippet, layer_index
     intermediate_embedding = outputs.hidden_states[layer_index].mean(dim=1).squeeze()  # Choose any intermediate layer
     return intermediate_embedding.numpy().tolist()
 
-# Processing function to apply all embedding methods to a code snippet
 def process_code_snippets(data, model, tokenizer):
     embeddings = {
         "mean_pooled": {},
@@ -83,53 +79,37 @@ def process_code_snippets(data, model, tokenizer):
             if code_key in item:
                 code_snippet = item[code_key]
                 
-                # Mean Pooled Embedding
                 embeddings["mean_pooled"][f"{code_id}_{code_key}"] = get_mean_pooled_embedding(
                     model, tokenizer, code_snippet)
                 
-                # Pooler Output Embedding (skip if None)
                 pooler_embedding = get_pooler_output_embedding(model, tokenizer, code_snippet)
                 if pooler_embedding is not None:
                     embeddings["pooler_output"][f"{code_id}_{code_key}"] = pooler_embedding
                 
-                # Attention Pooled Embedding
                 embeddings["attention_pooled"][f"{code_id}_{code_key}"] = get_attention_pooled_embedding(
                     model, tokenizer, code_snippet)
                 
-                # Max Pooled Embedding
                 embeddings["max_pooled"][f"{code_id}_{code_key}"] = get_max_pooled_embedding(
                     model, tokenizer, code_snippet)
                 
-                # Concatenated Layer Embedding
                 embeddings["concat_layers"][f"{code_id}_{code_key}"] = get_concat_layer_embedding(
                     model, tokenizer, code_snippet)
                 
-                # Intermediate Layer Embedding
                 embeddings["intermediate_layer"][f"{code_id}_{code_key}"] = get_intermediate_layer_embedding(
                     model, tokenizer, code_snippet)
 
     return embeddings
 
-# Load code snippets
 with open("../data/code_snippet.json", "r") as file:
     data = json.load(file)
 
-# Generate embeddings for base model
 base_model_embeddings = process_code_snippets(data, codebert_base_model, codebert_base_tokenizer)
 
-# Save base model embeddings to JSON
+
 for method, embeddings in base_model_embeddings.items():
     with open(f"../results/code_embeddings/code_embeddings_base_model_{method}.json", "w") as file:
         json.dump(embeddings, file, indent=4)
 
 print("Base model embeddings have been saved to ../results/code_embeddings/")
 
-# Generate embeddings for clone detection model
-clone_model_embeddings = process_code_snippets(data, clone_detection_model, codebert_base_tokenizer)
 
-# Save clone detection model embeddings to JSON
-for method, embeddings in clone_model_embeddings.items():
-    with open(f"../results/code_embeddings/code_embeddings_clone_detection_model_{method}.json", "w") as file:
-        json.dump(embeddings, file, indent=4)
-
-print("Clone detection model embeddings have been saved to ../results/code_embeddings/")

@@ -14,12 +14,6 @@ file_paths = [
     "../results/code_embeddings/code_embeddings_base_model_max_pooled.json",
     "../results/code_embeddings/code_embeddings_base_model_concat_layers.json",
     "../results/code_embeddings/code_embeddings_base_model_intermediate_layer.json",
-    "../results/code_embeddings/code_embeddings_clone_detection_model_mean_pooled.json",
-    "../results/code_embeddings/code_embeddings_clone_detection_model_pooler_output.json",
-    "../results/code_embeddings/code_embeddings_clone_detection_model_attention_pooled.json",
-    "../results/code_embeddings/code_embeddings_clone_detection_model_max_pooled.json",
-    "../results/code_embeddings/code_embeddings_clone_detection_model_concat_layers.json",
-    "../results/code_embeddings/code_embeddings_clone_detection_model_intermediate_layer.json"
 ]
 
 output_dir = "../results"
