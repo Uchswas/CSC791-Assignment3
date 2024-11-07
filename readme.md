@@ -10,7 +10,7 @@ Full Documentation Link : https://docs.google.com/document/d/1A6qpW8EVIG2F48-WM9
 
 #### Setup Instructions
 
-1. Clone the repository:
+1. **Clone the repository**
     ```bash
     git clone git@github.com:Uchswas/CSC791-Assignment3.git
     cd CSC791-Assignment3
