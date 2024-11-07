@@ -1,7 +1,7 @@
 #### RQs and key findings:
-RQ1: Can syntactic similarity matrices be solely relied upon for detecting code clones?
-RQ2: Can LLM models like CodeBERT outperform syntactical similarity metrics in identifying code clones?
-RQ3: Does the code embeddings of Codebert rely mostly on the syntax for clone detection
+- RQ1: Can syntactic similarity matrices be solely relied upon for detecting code clones?
+- RQ2: Can LLM models like CodeBERT outperform syntactical similarity metrics in identifying code clones?
+- RQ3: Does the code embeddings of Codebert rely mostly on the syntax for clone detection
 
 Full Documentation Link : https://docs.google.com/document/d/1A6qpW8EVIG2F48-WM9zwJ99KnaJkwlREFDU1AAGKUZs/edit?tab=t.0
 
