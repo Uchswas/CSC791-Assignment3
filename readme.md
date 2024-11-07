@@ -14,7 +14,7 @@
 2. **Create a Virtual Environment**  
    Run the following command to create a virtual environment named `venv`:
     ```bash
-    python -m venv venv_genai
+    python3 -m venv venv_genai
     ```
 
 3. **Activate the Virtual Environment**
@@ -33,7 +33,7 @@
     ```bash
     cd src
     ```
-    For generating embeddings, run the command. It will generate embeddings that can be found in the `results/code_embeddings` folde
+    For generating embeddings, run the command. It will generate embeddings that can be found in the `results/code_embeddings` folder
     ```bash
     python3 embedding.py
     ```
