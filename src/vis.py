@@ -50,7 +50,6 @@ def create_tsne_visualization(file_path, output_image_name):
             dist_file.write(f"Pair: ({label1}, {label2}) - Distance: {dist:.2f}\n")
 
         dist_file.write(f"\nSpecific pair distances for {output_image_name}:\n")
-        print(f"\nSpecific pair distances for {output_image_name}:")
         
         def calculate_specific_distance(label_a, label_b):
             idx_a, idx_b = labels.index(label_a), labels.index(label_b)
@@ -77,7 +76,6 @@ def create_tsne_visualization(file_path, output_image_name):
     output_path = os.path.join(output_dir, "images", output_image_name + ".png")
     plt.savefig(output_path)
     plt.close()
-    print(f"Saved 3D t-SNE plot for {output_image_name} to {output_path}")
 
 for file_path in file_paths:
     output_image_name = os.path.basename(file_path).replace(".json", "")
